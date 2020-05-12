@@ -13,7 +13,7 @@ def webscrape(course_tag):
     opt = Options()
     opt.add_argument("--headless")
     driver = webdriver.Chrome(
-        executable_path="bin/chromedriver", chrome_options=opt)
+        executable_path="../bin/chromedriver", chrome_options=opt)
 
     # Scrape coursebook
     driver.get(f"https://coursebook.utdallas.edu/search/{course_tag}")
