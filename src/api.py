@@ -61,4 +61,4 @@ def simpleFormatting(data):
 
 
 # Serve the server
-app.run(port=5000)
+app.run(threaded=True, port=5000)
