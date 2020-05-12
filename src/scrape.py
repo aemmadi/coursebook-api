@@ -3,6 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+import os
 
 # Scrape coursebook, given the formatted course tag (Ex: cs4337.001.20f)
 
@@ -11,12 +12,12 @@ def webscrape(course_tag):
 
     # Configure chromedriver
     opt = Options()
-    opt.binary_location = GOOGLE_CHROME_BIN
+    opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     opt.add_argument("--headless")
     opt.add_argument("--disable-gpu")
     opt.add_argument("--no-sandbox")
     driver = webdriver.Chrome(
-        executable_path=CHROMEDRIVER_PATH, chrome_options=opt)
+        executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=opt)
 
     # Scrape coursebook
     driver.get(f"https://coursebook.utdallas.edu/search/{course_tag}")
