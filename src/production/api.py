@@ -1,6 +1,7 @@
 # Import Libraries
 from flask import Flask, jsonify
-from scrape_dev import webscrape
+from .scrape import webscrape  # .scrape for heroku deployment
+import re
 
 # Configure as a flask server
 app = Flask(__name__)
