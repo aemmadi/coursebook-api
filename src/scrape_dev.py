@@ -21,14 +21,25 @@ def webscrape(course_tag):
     elem = driver.find_element_by_link_text("Class Detail")
     time.sleep(0.5)  # Prevents coursebook to freeze due to fast executions
     elem.click()
-    driver.implicitly_wait(2)  # Wait for new data to render on coursebook
+    driver.implicitly_wait(3)  # Wait for new data to render on coursebook
     elem = driver.find_elements_by_class_name("courseinfo__overviewtable__td")
+    elem_head = driver.find_elements_by_class_name(
+        "courseinfo__overviewtable__th")
 
     # Data processing
     classData = []
+    classHead = []
+
+    # Dumps all data into a list
     for obj in elem:
-        classData.append(obj.text)  # Dumps all data into a list
+        classData.append(obj.text)
+
+    for obj in elem_head:
+        classHead.append(obj.text)
 
     # Finishing touches
     driver.quit()
-    return classData
+    return {
+        'data': classData,
+        'head': classHead
+    }
