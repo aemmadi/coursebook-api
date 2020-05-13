@@ -22,9 +22,9 @@ def webscrape(course_tag):
     # Scrape coursebook
     driver.get(f"https://coursebook.utdallas.edu/search/{course_tag}")
     elem = driver.find_element_by_link_text("Class Detail")
-    time.sleep(0.1)  # Prevents coursebook to freeze due to fast executions
+    time.sleep(0.5)  # Prevents coursebook to freeze due to fast executions
     elem.click()
-    driver.implicitly_wait(1.5)  # Wait for new data to render on coursebook
+    driver.implicitly_wait(2)  # Wait for new data to render on coursebook
     elem = driver.find_elements_by_class_name("courseinfo__overviewtable__td")
 
     # Data processing
