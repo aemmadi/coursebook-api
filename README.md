@@ -12,23 +12,29 @@ Unofficial API for UT Dallas Coursebook
 
 ## API v1 Documentation
 
-**Schema:**
+The API dynamically scrapes content from coursebook, allowing for it to account towards additional data fields/ommitted data fields returned by coursebook. However, this also means that the schema may not always be the same. I have provided the general schema, but depending on the class the schema might have extra or lesser key value pairs.
+
+**General Schema:**
 
 ```json
-{
-  "class_attr": string,
-  "class_college": string,
-  "class_crosslist": string[],
-  "class_desc": string,
-  "class_eval": string,
-  "class_info": string[],
-  "class_instructor": string[],
-  "class_reqs": string,
-  "class_schedule": string[],
-  "class_status": string[],
-  "class_syllabus": string,
-  "class_ta": string,
-  "class_title": string
+  {
+    "data": {
+        "class_attributes": string/string[],
+        "class_info": string[],
+        "class_notes": string,
+        "college": string,
+        "core": string,
+        "course_title": string,
+        "cross_listed_with": string[],
+        "description": string,
+        "enrollment_reqs": string,
+        "evaluation": string,
+        "instructor": string[],
+        "schedule": string[],
+        "status": string[],
+        "syllabus": string,
+        "ta/ra": string
+    }
 }
 ```
 
