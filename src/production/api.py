@@ -1,10 +1,17 @@
 # Import Libraries
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template_string
 from .scrape import webscrape  # .scrape for heroku deployment
-import re
+from production.render import docs_html
 
 # Configure as a flask server
 app = Flask(__name__)
+
+# Root endpoints only return README from github repo
+@app.route('/')
+@app.route('/v1')
+def render_docs():
+    return render_template_string(docs_html())
+
 
 # GET /v1/<string: term>/<string: course>/<string: section>
 
