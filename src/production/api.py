@@ -1,7 +1,7 @@
 # Import Libraries (heroku requires a . before local imports)
 from flask import Flask, jsonify, render_template_string
 from .scrape import webscrape
-from .production.render import docs_html
+from .render import docs_html
 
 # Configure as a flask server
 app = Flask(__name__)
