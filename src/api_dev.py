@@ -1,14 +1,15 @@
 # Import Libraries
 from flask import Flask, jsonify, render_template_string
-from scrape_dev import webscrape
-from production.render import docs_html
+from scrape_dev import webscrape, webscrape_all_sections
+from production.functions.render import docs_html
+import sys
 
 # Configure as a flask server
 app = Flask(__name__)
 
 # Root endpoints only return README from github repo
 @app.route('/')
-@app.route('/v1')
+@app.route('/v1/')
 def render_docs():
     return render_template_string(docs_html())
 
@@ -27,61 +28,16 @@ def perma_course(term, course, section):
     # Scrape coursebook
     class_info = webscrape(url)
 
-    # Seperate into two parallel arrays
-    classData = class_info['data']
-    classHead = class_info['head']
-
-    # Basic formatting of raw data for a neater API
-    classData = simpleFormatting(classData)
-    classHead = simpleFormattingHead(classHead)
-
     # Send response
-    return jsonify({
-        'data': final_obj(classHead, classData)
-    })
+    return jsonify({'data': class_info})
 
-# Converts the raw data into a neat API output
-
-
-def simpleFormatting(data):
-    for i in range(len(data)):
-        if '\n' in data[i]:
-            data[i] = data[i].split('\n')  # Create sub list
-        if '    ' in data[i]:
-            data[i] = data[i].split("    ")  # Create sub list
-        if '   ' in data[i]:
-            data[i] = data[i].split("   ")  # Create sub list
-
-    # Hardcoded sub lists (Guaranteed in every scrape)
-    data[1][0] = data[1][0].split(" Instruction ")
-    data[1][1] = data[1][1].split(" Activity ")
-    data[1][2] = data[1][2].split(" Class/")
-    data[1][3] = data[1][3].split(" Session ")
-    data[1][4] = data[1][4].split(" Orion ")
-
-    return data
-
-# Converts the raw data into a neat API output
-
-
-def simpleFormattingHead(head):
-    for i in range(len(head)):
-        if ':' in head[i]:
-            head[i] = head[i].replace(':', '')
-        if '(s)' in head[i]:
-            head[i] = head[i].replace('(s)', '')
-        if ' ' in head[i]:
-            head[i] = head[i].replace(' ', '_')
-    return head
-
-# Combines two parallel arrays into a single object
-
-
-def final_obj(head, data):
-    final = {}
-    for i in range(len(head)):
-        final.update({head[i].lower(): data[i]})
-    return final
+# GET /v1/<string: course>
+@app.route('/v1/<string:course>/')
+# Returns class data for all the sections in the current semester
+def all_courses(course):
+    course = course.lower()
+    course_list = webscrape_all_sections(course)
+    return jsonify({"data": course_list})
 
 
 # Serve the server
