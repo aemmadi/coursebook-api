@@ -34,18 +34,12 @@ def webscrape(course_tag):
     course_head = driver.find_elements_by_class_name(
         "courseinfo__overviewtable__th")
 
-    # Dumps all data into a list
-    course_data = data.add_elements_to_array(course)
-    head_data = data.add_elements_to_array(course_head)
-
-    # Formats all data for neater API output
-    course_data = data.simpleFormatting(course_data)
-    head_data = data.simpleFormattingHead(head_data)
-
-    course_info = data.final_obj(head_data, course_data)
+    course_info = data.scrape_data(course, course_head)
 
     driver.close()
     return course_info
+
+# Scrape all sections for a course on coursebook
 
 
 def webscrape_all_sections(course_tag):
@@ -64,18 +58,8 @@ def webscrape_all_sections(course_tag):
         course_head = driver.find_elements_by_class_name(
             "courseinfo__overviewtable__th")
 
-        course_data = data.add_elements_to_array(course)
-        head_data = data.add_elements_to_array(course_head)
-
-        course_data = data.simpleFormatting(course_data)
-        head_data = data.simpleFormattingHead(head_data)
-
-        course_info = data.final_obj(head_data, course_data)
-
-        # print(head_data, file=sys.stderr)
+        course_info = data.scrape_data(course, course_head)
         list_data.append(course_info)
-        course_data = []
-        head_data = []
         time.sleep(0.5)
 
     driver.close()
