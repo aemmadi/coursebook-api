@@ -38,9 +38,27 @@ def final_obj(head, data):
         final.update({head[i].lower(): data[i]})
     return final
 
+# Adds element data to array
+
 
 def add_elements_to_array(elem):
     data = []
     for obj in elem:
         data.append(obj.text)
     return data
+
+# Converts raw coursebook data into API output
+
+
+def scrape_data(course, course_head):
+
+    # Dumps all data into a list
+    course_data = add_elements_to_array(course)
+    head_data = add_elements_to_array(course_head)
+
+    # Formats all data for neater API output
+    course_data = simpleFormatting(course_data)
+    head_data = simpleFormattingHead(head_data)
+
+    course_info = final_obj(head_data, course_data)
+    return course_info
