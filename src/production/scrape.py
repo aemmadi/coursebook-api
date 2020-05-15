@@ -15,8 +15,9 @@ opt.add_argument("--no-sandbox")
 
 
 def spawn_browser():
-    driver = webdriver.Chrome(
+    spawn = webdriver.Chrome(
         executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=opt)
+    return spawn
 
 # Scrape coursebook, given the formatted course tag (Ex: cs4337.001.20f)
 
