@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-import production.functions.data as data
+from production.data import *
 import sys
 
 # Configure chromedriver
@@ -34,7 +34,7 @@ def webscrape(course_tag):
     course_head = driver.find_elements_by_class_name(
         "courseinfo__overviewtable__th")
 
-    course_info = data.scrape_data(course, course_head)
+    course_info = scrape_data(course, course_head)
 
     driver.close()
     return course_info
@@ -58,7 +58,7 @@ def webscrape_all_sections(course_tag):
         course_head = driver.find_elements_by_class_name(
             "courseinfo__overviewtable__th")
 
-        course_info = data.scrape_data(course, course_head)
+        course_info = scrape_data(course, course_head)
         list_data.append(course_info)
         time.sleep(0.5)
 

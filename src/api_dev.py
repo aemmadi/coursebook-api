@@ -1,7 +1,7 @@
 # Import Libraries
 from flask import Flask, jsonify, render_template_string
 from scrape_dev import webscrape, webscrape_all_sections
-from production.functions.render import docs_html
+from production.render import docs_html
 import sys
 
 # Configure as a flask server
