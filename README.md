@@ -59,6 +59,17 @@ The API dynamically scrapes content from coursebook, allowing for it to account 
   - Formatting: `<three-digit section number>`
   - Examples: `001`, `0w1`, `HON`
 
+### Class Details For All Sections
+
+`GET /v1/<course>` : Returns an array of objects with class details for every section in **current semester**
+
+**Formatting:**
+
+- `<course>` :
+  - Course number
+  - Formatting: `<subject code><number>`
+  - Examples: `cs4337`, `math2414`, `hist1301`
+
 ## Contributing
 
 Feel free to fork the repository and pull request it.
