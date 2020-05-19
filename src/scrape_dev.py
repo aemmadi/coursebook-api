@@ -8,9 +8,10 @@ import sys
 
 # Configure chromedriver
 opt = Options()
-opt.add_argument("--headless")
+# opt.add_argument("--headless")
 opt.add_argument("--disable-gpu")
 opt.add_argument("--no-sandbox")
+driver = webdriver.Chrome("bin/chromedriver-win.exe", chrome_options=opt)
 
 
 def spawn_browser():
@@ -22,7 +23,7 @@ def spawn_browser():
 
 
 def webscrape(course_tag):
-    driver = spawn_browser()
+    # driver = spawn_browser()
     # Scrape coursebook for one specific course
     driver.get(f"https://coursebook.utdallas.edu/search/{course_tag}")
     course = driver.find_element_by_link_text("Class Detail")
@@ -36,14 +37,14 @@ def webscrape(course_tag):
 
     course_info = scrape_data(course, course_head)
 
-    driver.close()
+    # driver.close()
     return course_info
 
 # Scrape all sections for a course on coursebook
 
 
 def webscrape_all_sections(course_tag):
-    driver = spawn_browser()
+    # driver = spawn_browser()
     driver.get(f"https://coursebook.utdallas.edu/search/{course_tag}")
     course_list = driver.find_elements_by_link_text("Class Detail")
 
@@ -62,5 +63,5 @@ def webscrape_all_sections(course_tag):
         list_data.append(course_info)
         time.sleep(0.5)
 
-    driver.close()
+    # driver.close()
     return list_data
