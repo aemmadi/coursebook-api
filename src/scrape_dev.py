@@ -35,7 +35,7 @@ def webscrape(course_tag):
         "courseinfo__overviewtable__th")
 
     course_info = scrape_data(course, course_head)
-
+    course_info = array_to_obj(course_info)
     driver.close()
     return course_info
 
@@ -59,6 +59,7 @@ def webscrape_all_sections(course_tag):
             "courseinfo__overviewtable__th")
 
         course_info = scrape_data(course, course_head)
+        course_info = array_to_obj(course_info)
         list_data.append(course_info)
         time.sleep(0.5)
 
