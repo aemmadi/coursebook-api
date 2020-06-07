@@ -1,6 +1,6 @@
 # Import Libraries (heroku requires a . before local imports)
 from flask import Flask, jsonify, render_template_string
-from .scrape import webscrape, webscrape_all_sections
+from .scrape import webscrape_single_section, webscrape_all_sections
 from .render import docs_html
 
 # Configure as a flask server
@@ -16,22 +16,22 @@ def render_docs():
 # GET /v1/<string: term>/<string: course>/<string: section>
 
 
-@app.route('/v1/<string:term>/<string:course>/<string:section>')
+@app.route('/v1/<string:term>/<string:course>/<string:section>', methods=['GET'])
 # Returns only the course requested
-def perma_course(term, course, section):
+def single_course(term, course, section):
     # Formatting
     term = term.lower()
     course = course.lower()
     url = f"{course}.{section}.{term}"
 
     # Scrape coursebook
-    class_info = webscrape(url)
+    class_info = webscrape_single_section(url)
 
     # Send response
     return jsonify({'data': class_info})
 
 # GET /v1/<string: course>
-@app.route('/v1/<string:course>/')
+@app.route('/v1/<string:course>/', methods=['GET'])
 # Returns class data for all the sections in the current semester
 def all_courses(course):
     course = course.lower()
