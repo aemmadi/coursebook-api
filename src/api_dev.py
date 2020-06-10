@@ -1,7 +1,7 @@
 # Import Libraries
 from flask import Flask, jsonify, render_template_string
 from scrape_dev import webscrape_single_section, webscrape_all_sections
-from production.render import docs_html
+from production.render import docs_html, get_grades
 import sys
 
 # Configure as a flask server
@@ -38,6 +38,16 @@ def all_courses(course):
     course = course.lower()
     course_list = webscrape_all_sections(course)
     return jsonify({"data": course_list})
+
+
+@app.route('/v1/grades/<string:term>/<string:course>/<string:section>')
+def course_grades(term, course, section):
+    term = term.lower()
+    course = course.lower()
+    section = section.lower()
+
+    grade_data = get_grades(term, course, section)
+    return jsonify({"data": grade_data})
 
 
 # Serve the server
