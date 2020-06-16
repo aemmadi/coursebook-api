@@ -74,4 +74,10 @@ The API dynamically scrapes content from coursebook, allowing for it to account 
 
 Feel free to fork the repository and pull request it.
 
-All I ask of you is to `comment your code` so that it would be easy to review it. Work on any issue you are interested in fixing, or just want to tidy up my inefficient code :)
+Branch naming convention:
+- `feature/<name-of-feat>`: Feature branch, new features, usually labelled as **Enhancements** in issues. _Example: `feature/professor-data`_
+- `bug/<name-of-bug>`: Bug branch, bug fixes, usually labelled as **Bug** in issues. _Example: `bug/heading-format`_
+- `internal/<name>`: Internal branch, internal improvements, misc. items go under this branch, labelled accordingly as **Internal** in issues. _Example: `internal/refactor`_
+- `update/<name-of-feat>`: Update branch, update existing features, not neccessarily a bug fix. _Example: `update/data-storage`_ 
+
+Make sure to `comment your code` so that it would be easy to review it. Work on any issue you are interested in fixing, or just want to tidy up my inefficient code :)
