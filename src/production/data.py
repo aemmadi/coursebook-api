@@ -1,5 +1,6 @@
 import sys
 import json
+import re
 
 
 def simpleFormatting(data):
@@ -147,3 +148,30 @@ def array_to_obj(course_info):
         obj = {}
 
     return course_info
+
+# Converts course into an array seperating subject and number, math2413 -> [math, 2413]
+
+
+def convert_course(course):
+    num = re.findall('\d+', course)[0]
+    subj = course.replace(f"{num}", "")
+    return [subj, num]
+
+
+# Converts term into expanded format, 18f -> Fall 2018
+
+
+def convert_term(term):
+    season = term[-1]
+    term = f"20{term[:-1]}"
+
+    if season == "f":
+        season = "Fall"
+    elif season == "s":
+        season = "Spring"
+    elif season == "u":
+        season = "Summer"
+    else:
+        return -1
+
+    return f"{season}%20{term}"
