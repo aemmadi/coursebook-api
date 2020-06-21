@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, render_template_string
 from scrape_dev import webscrape_single_section, webscrape_all_sections
 from production.render import docs_html, get_grades
+from production.db import *
 import sys
 
 # Configure as a flask server
@@ -46,7 +47,7 @@ def course_grades(term, course, section):
     course = course.lower()
     section = section.lower()
 
-    grade_data = get_grades(term, course, section)
+    grade_data = get_single_course_grade(term, course, section)
     return jsonify({"data": grade_data})
 
 
