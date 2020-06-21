@@ -1,9 +1,9 @@
 # Import Libraries
+# import data
 import requests
 import sys
 
-# from .data import *
-from data import *
+from .data import *
 
 # Renders raw markdown from README.md in github master branch into HTML
 
