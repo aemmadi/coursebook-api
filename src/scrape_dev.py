@@ -11,7 +11,7 @@ opt = Options()
 # opt.add_argument("--headless")
 opt.add_argument("--disable-gpu")
 opt.add_argument("--no-sandbox")
-driver = webdriver.Chrome("bin/chromedriver", chrome_options=opt)
+driver = webdriver.Chrome("bin/chromedriver-win.exe", chrome_options=opt)
 driver.get("https://coursebook.utdallas.edu")
 
 
