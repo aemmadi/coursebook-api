@@ -3,10 +3,9 @@ import os
 from .render import grades_by_term
 from .data import *
 
-# from data import *
-# from render import grades_by_term
-from dotenv import load_dotenv
-load_dotenv()
+# DEV ENVIRONMENT ONLY
+# from dotenv import load_dotenv
+# load_dotenv()
 
 db = MongoClient(os.environ.get("DB_KEY"))
 grades_db = db.grades
