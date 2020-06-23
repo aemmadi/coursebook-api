@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, render_template_string
 from .scrape import webscrape_single_section, webscrape_all_sections
 from .render import docs_html
+from .db import *
 
 # Configure as a flask server
 app = Flask(__name__)
@@ -37,6 +38,18 @@ def all_courses(course):
     course = course.lower()
     course_list = webscrape_all_sections(course)
     return jsonify({"data": course_list})
+
+
+@app.route('/v1/grades/<string:term>/<string:course>/<string:section>', methods=['GET'])
+def single_course_grade(term, course, section):
+    grade_data = get_single_course_grade(term, course, section)
+    return jsonify({"data": grade_data})
+
+
+@app.route('/v1/grades/<string:term>/<string:course>', methods=['GET'])
+def all_course_grades(term, course):
+    grade_data = get_all_course_grades(term, course)
+    return jsonify({"data": grade_data})
 
 
 # Serve the server
