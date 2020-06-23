@@ -41,13 +41,15 @@ def all_courses(course):
     return jsonify({"data": course_list})
 
 
-@app.route('/v1/grades/<string:term>/<string:course>/<string:section>')
-def course_grades(term, course, section):
-    term = term.lower()
-    course = course.lower()
-    section = section.lower()
-
+@app.route('/v1/grades/<string:term>/<string:course>/<string:section>', methods=['GET'])
+def single_course_grade(term, course, section):
     grade_data = get_single_course_grade(term, course, section)
+    return jsonify({"data": grade_data})
+
+
+@app.route('/v1/grades/<string:term>/<string:course>', methods=['GET'])
+def all_course_grades(term, course):
+    grade_data = get_all_course_grades(term, course)
     return jsonify({"data": grade_data})
 
 

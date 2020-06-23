@@ -23,3 +23,15 @@ def get_single_course_grade(term, course, section):
         {"subj": subject, "num": number, "sect": section})
     del course_grade["_id"]
     return course_grade
+
+
+def get_all_course_grades(term, course):
+    course = convert_course(course)
+    subject = course[0].upper()
+    number = course[1].upper()
+
+    grade_data = grades_db[term]
+    course_grades = list(grade_data.find({"subj": subject, "num": number}))
+    for grade in course_grades:
+        del grade["_id"]
+    return course_grades
