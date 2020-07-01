@@ -157,7 +157,6 @@ def convert_course(course):
     subj = course.replace(f"{num}", "")
     return [subj, num]
 
-
 # Converts term into expanded format, 18f -> Fall 2018
 
 
@@ -175,3 +174,11 @@ def convert_term(term):
         return -1
 
     return f"{season}%20{term}"
+
+# Removes the _id returned by mongodb
+
+
+def remove_id(data):
+    for thing in data:
+        del thing["_id"]
+    return data
