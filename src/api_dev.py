@@ -1,6 +1,6 @@
 # Import Libraries
 from flask import Flask, jsonify, render_template_string
-from scrape_dev import webscrape_single_section, webscrape_all_sections
+from scrape_dev import *
 from production.render import docs_html, get_grades
 from production.db import *
 import sys
@@ -51,6 +51,12 @@ def single_course_grade(term, course, section):
 def all_course_grades(term, course):
     grade_data = get_all_course_grades(term, course)
     return jsonify({"data": grade_data})
+
+
+@app.route('/v1/prof/<string:name>', methods=['GET'])
+def get_prof_data(name):
+    prof_data = fetch_prof(name)
+    return jsonify({"data": prof_data})
 
 
 # Serve the server
