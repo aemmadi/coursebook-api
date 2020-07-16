@@ -4,6 +4,8 @@ Unofficial API for UT Dallas Coursebook
 
 This was a fun sophomore summer project. I will maintain this API till 2022/2023. Just open an issue if you have any suggestions or something is breaking the API. UTD coursebook sometimes makes some subtle changes that break the API, I have tried my best to account for those in my API but it might not be perfect.
 
+[Prettier API Docs](https://documentup.com/aemmadi/coursebook-api/__recompile)
+
 ## v1 Routes
 
 ### Specific Class Details
