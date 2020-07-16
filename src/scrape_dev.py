@@ -54,6 +54,32 @@ def webscrape_all_sections(course_tag):
     return list_data
 
 
+def scrape_prof_data(prof_list):
+    success = []
+    failed = []
+    for prof in prof_list:
+        # prof = prof_list[0]
+        try:
+            driver.get(
+                f"https://www.utdallas.edu/directory/includes/directories.class.php?dirType=displayname&dirSearch={prof['name']}&dirAffil=faculty&dirDept=All&dirMajor=All&dirSchool=All")
+            name = driver.find_element_by_class_name("fullname").text
+            details = driver.find_element_by_class_name("output").text
+            # print(name, file=sys.stderr)
+            details = details.split("\n")
+            details[4] = details[4].replace("Office - ", "")
+            details[5] = details[5].replace("Mailstop - ", "")
+
+            success.append({"name": name, "email": details[0], "title": details[1], "department": details[2],
+                            "phone": details[3], "office": details[4], "mailstop": details[5]})
+        except:
+            # print(f"ERROR {prof['name']}", file=sys.stderr)
+            failed.append(prof['name'])
+    return {
+        'success': success,
+        'failed': failed
+    }
+
+
 def set_inject_vars(driver):
     return {"course": driver.find_elements_by_class_name(
             "courseinfo__overviewtable__td"),
