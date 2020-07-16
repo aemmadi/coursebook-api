@@ -9,12 +9,8 @@ from .data import *
 
 
 def docs_html():
-    url = 'https://api.github.com/markdown/raw'
-    md = requests.get(
-        'https://raw.githubusercontent.com/aemmadi/coursebook-api/master/README.md')
-    html = requests.post(url, data=md.text, headers={
-                         'Content-Type': 'text/x-markdown'})
-    return f'<html><head><title>Unofficial API for UT Dallas Coursebook</title></head><body>{html.text}</body></html>'
+    url = 'https://documentup.com/aemmadi/coursebook-api/__recompile'
+    return f'<html><head><title>Unofficial API for UT Dallas Coursebook</title></head><body><h1><a href={url}>Documentation</a></h1></body></html>'
 
 # Retrieves grades from utd-grades github repo
 
