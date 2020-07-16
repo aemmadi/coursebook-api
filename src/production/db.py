@@ -5,8 +5,8 @@ from .render import grades_by_term
 from .data import *
 
 # DEV ENVIRONMENT ONLY
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 db = MongoClient(os.environ.get("DB_KEY"))
 info_db = db.info
