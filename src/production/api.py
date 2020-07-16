@@ -51,6 +51,11 @@ def all_course_grades(term, course):
     grade_data = get_all_course_grades(term, course)
     return jsonify({"data": grade_data})
 
+@app.route('/v1/prof/<string:name>', methods=['GET'])
+def get_prof_data(name):
+    prof_data = fetch_prof(name)
+    return jsonify({"data": prof_data})
+
 
 # Serve the server
 if __name__ == '__main__':
