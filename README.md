@@ -12,6 +12,10 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
 
 `GET /v1/:term/:course/:section` : Returns a single object for requested class.
 
+<details>
+
+<summary> Click to expand </summary>
+
 **Parameters:**
 
 - `term` :
@@ -69,9 +73,16 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
 }
 ```
 
+</details>
+
+
 ### Class Details For All Sections (Broken for now)
 
 `GET /v1/<course>` : Returns an array of objects with class details for every section in **current semester**
+
+<details>
+
+<summary> Click to expand </summary>
 
 **Parameters:**
 
@@ -80,11 +91,17 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
   - Formatting: `<subject code><number>`
   - Examples: `cs4337`, `math2414`, `hist1301`
 
+</details>
+
 ### Grades Data
 
 > Source: [UTDGrades](https://utdgrades.com/)
 
 `GET /v1/grades/:term/:course` : Returns an array of objects for all sections in the course with appropriate grades
+
+<details>
+
+<summary> Click to expand </summary>
 
 **Parameters:**
 
@@ -129,7 +146,13 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
 }
 ```
 
+</details>
+
 `GET /v1/grades/:term/:course/:section`: Returns a single object with grade data for the given course and section
+
+<details>
+
+<summary> Click to expand </summary>
 
 **Parameters:**
 
@@ -174,11 +197,17 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
 }
 ```
 
+</details>
+
 ### Professor Data
 
 > Source: [UTD Directory](https://www.utdallas.edu/directory/)
 
 `GET /v1/prof/:name`: Returns an array of objects for all professors matched with the given `:name`
+
+<details>
+
+<summary> Click to expand </summary>
 
 **Parameters**:
 
@@ -205,6 +234,8 @@ This was a fun sophomore summer project. I will maintain this API till 2022/2023
   ]
 }
 ```
+
+</details>
 
 ## Contributing
 
