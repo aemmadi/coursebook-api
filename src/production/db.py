@@ -42,6 +42,5 @@ def get_all_course_grades(term, course):
 def fetch_prof(name):
     found_prof = list(prof_db["dir"].find(
         {"name": {"$regex": f"{name}", "$options": "i"}}))
-    print(found_prof, file=sys.stderr)
     found_prof = remove_id(found_prof)
     return found_prof
