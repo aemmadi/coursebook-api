@@ -21,7 +21,7 @@ driver.get("https://coursebook.utdallas.edu")
 
 def webscrape_single_section(course_tag):
     driver.get(
-        f"https://coursebook.utdallas.edu/clips/clip-coursebook.zog?id={course_tag}&action=info")
+        f"https://coursebook.utdallas.edu/clips/clip-cb11.zog?id={course_tag}&action=info")
 
     course = set_inject_vars(driver)["course"]
     course_head = set_inject_vars(driver)["course_head"]
